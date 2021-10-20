@@ -1,7 +1,7 @@
 <template>
   <div class="left-menu">
     <Menu v-model:selectedKeys="selectedKeys">
-        <Item v-for="item in optionsData" :key="item.id">
+        <Item v-for="item in optionsData" :key="item.path">
             <router-link :to="item.path">
                 {{item.text}}
             </router-link>
@@ -11,8 +11,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { Menu } from 'ant-design-vue'
+import { useRoute } from 'vue-router'
 
 const { Item } = Menu
 
@@ -30,7 +31,14 @@ export default defineComponent({
     },
     setup () {
 
-        const selectedKeys = ref(['1'])
+        const route = useRoute()
+
+        const selectedKeys = ref([]) as any
+
+        //刷新页面 判断路由 设置左侧选中菜单
+        selectedKeys.value = computed(() => {
+            return [route.path]
+        })
 
         return {
             selectedKeys
@@ -45,7 +53,7 @@ export default defineComponent({
         padding: 20px 0;
 
         :deep(.ant-menu) {
-            background: #fbfbfb;
+            background: #fff;
             border-right: none;
         }
 

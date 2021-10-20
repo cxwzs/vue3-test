@@ -24,7 +24,7 @@ import { defineComponent } from 'vue'
 
 import { Layout } from 'ant-design-vue'
 
-import LeftMenu from './components/LeftMenu.vue'
+import LeftMenu from '/@/components/LeftMenu.vue'
 
 const menuList = [
     {
@@ -75,7 +75,7 @@ export default defineComponent ({
             left: 0;
             z-index: 998;
             height: 100vh;
-            background: #fbfbfb;
+            background: #fff;
         }
 
         .right-content {
